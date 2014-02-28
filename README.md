@@ -6,7 +6,7 @@ This is a Google Chrome/Chromium extension to make Kronos a little more usable. 
 Installation
 ------------
 
-1. [Download](pkg/fix-kronos-chrome.crx) the extension file from the website and save it to your computer.
+1. [Download](https://github.com/vubiostat/fix-kronos-chrome/blob/master/pkg/fix-kronos-chrome.crx?raw=true) the extension file from the website and save it to your computer.
 2. Click the Chrome menu icon ![Chrome menu](https://storage.googleapis.com/support-kms-prod/SNP_2696434_en_v1) on the browser toolbar.
 3. Select *Tools > Extensions*.
 4. Locate the extension file on your computer and drag the file onto the Extensions page.
