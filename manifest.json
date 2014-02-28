@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+
+  "name": "Fix Kronos",
+  "description": "This extension fixes Kronos a little.",
+  "version": "1.0",
+
+  "permissions": [
+    "https://kronosprod.mis.vanderbilt.edu/"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["https://kronosprod.mis.vanderbilt.edu/*"],
+      "js": ["bootstrap.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "web_accessible_resources": [
+    "fix-kronos.js"
+  ]
+}
