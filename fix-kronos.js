@@ -1,5 +1,3 @@
-debugger;
-
 // stub out function to prevent tons of errors
 if (typeof(routeEvent) == 'undefined') {
   function routeEvent(event) {

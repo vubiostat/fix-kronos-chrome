@@ -1,5 +1,3 @@
-debugger;
-
 // inject content scripts into DOM
 var iframe = document.getElementById('contentPane');
 iframe.onload = function() {
