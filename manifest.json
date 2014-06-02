@@ -11,6 +11,11 @@
 
   "content_scripts": [
     {
+      "matches": ["https://kronosprod.mis.vanderbilt.edu/wfc/logon"],
+      "js": ["redirect.js"],
+      "run_at": "document_start"
+    },
+    {
       "matches": ["https://kronosprod.mis.vanderbilt.edu/*"],
       "js": ["bootstrap.js"],
       "run_at": "document_idle"
