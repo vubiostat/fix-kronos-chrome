@@ -4,10 +4,8 @@ if (typeof(routeEvent) == 'undefined') {
   }
 }
 
-// expand acronyms for PTO types
-var table = document.querySelector('table.Tabular.Timecard');
-if (table) {
-  var labels = {
+(function() {
+  var abbrevs = {
     BRE: 'Bereavement',
     JYE: 'Jury Duty',
     PES: 'flexPTO (exempt)',
@@ -20,28 +18,51 @@ if (table) {
     SNU: 'Grandfathered Sick Unscheduled (non-exempt)',
   };
 
-  var selects = table.querySelectorAll('tbody td.Paycode select');
-  for (var i = 0; i < selects.length; i++) {
-    var select = selects[i];
-    var options = select.querySelectorAll('option');
-    for (var j = 0; j < options.length; j++) {
-      var label = labels[options[j].textContent];
-      if (label) {
-        options[j].innerHTML = label;
+  function replaceAbbrev(element, abbrev) {
+    if (typeof(abbrev) == 'undefined') {
+      abbrev = element.innerHTML;
+    }
+    var text = abbrevs[abbrev];
+    if (text) {
+      element.innerHTML = text;
+    }
+  }
+
+  // expand acronyms for PTO types
+  var table = document.querySelector('table.Tabular.Timecard');
+  if (table) {
+    // replace select option text
+    var trs = table.querySelectorAll('tbody tr');
+    for (var i = 0; i < trs.length; i++) {
+      var tr = trs[i];
+      var payCodeDiv = tr.querySelector('td.Paycode div');
+      if (!payCodeDiv) {
+        continue;
+      }
+
+      var payCodeSelect = payCodeDiv.querySelector('select');
+      if (payCodeSelect) {
+        var payCodeOptions = payCodeSelect.querySelectorAll('option');
+        for (var j = 0; j < payCodeOptions.length; j++) {
+          replaceAbbrev(payCodeOptions[j]);
+        }
+
+        // find the accompanying amount input and auto-set to 8.0 on select change
+        var amountInput = tr.querySelector('td.Amount input');
+        if (amountInput) {
+          payCodeSelect.addEventListener('change', function(evt) {
+            if (amountInput.value === '') {
+              amountInput.value = '8.0';
+            }
+          });
+        }
+      } else {
+        // this is probably a previous timecard
+        var md = payCodeDiv.innerHTML.match(/^&nbsp;([A-Z]{3})&nbsp;$/);
+        if (md) {
+          replaceAbbrev(payCodeDiv, md[1]);
+        }
       }
     }
-
-    // find this select's accompanying amount input and auto-set to 8.0 on select
-    (function(select) {
-      var inputName = select.getAttribute('name').replace(/C3$/, "C4");
-      var input = table.querySelector('tbody td.Amount input[name="' + inputName + '"]');
-      if (input) {
-        select.addEventListener('change', function(evt) {
-          if (input.value === '') {
-            input.value = '8.0';
-          }
-        });
-      }
-    })(select);
   }
-}
+})();
