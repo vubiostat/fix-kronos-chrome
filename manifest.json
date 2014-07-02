@@ -9,7 +9,7 @@
     "https://kronosprod.mis.vanderbilt.edu/"
   ],
 
-  "update_url": "https://github.com/vubiostat/fix-kronos-chrome/raw/master/updates.xml",
+  "update_url": "https://raw.githubusercontent.com/vubiostat/fix-kronos-chrome/master/updates.xml",
 
   "content_scripts": [
     {
