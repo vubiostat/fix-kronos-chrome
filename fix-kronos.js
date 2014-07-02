@@ -22,12 +22,26 @@ if (table) {
 
   var selects = table.querySelectorAll('tbody td.Paycode select');
   for (var i = 0; i < selects.length; i++) {
-    var options = selects[i].querySelectorAll('option');
+    var select = selects[i];
+    var options = select.querySelectorAll('option');
     for (var j = 0; j < options.length; j++) {
       var label = labels[options[j].textContent];
       if (label) {
         options[j].innerHTML = label;
       }
     }
+
+    // find this select's accompanying amount input and auto-set to 8.0 on select
+    (function(select) {
+      var inputName = select.getAttribute('name').replace(/C3$/, "C4");
+      var input = table.querySelector('tbody td.Amount input[name="' + inputName + '"]');
+      if (input) {
+        select.addEventListener('change', function(evt) {
+          if (input.value === '') {
+            input.value = '8.0';
+          }
+        });
+      }
+    })(select);
   }
 }
