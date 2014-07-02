@@ -47,15 +47,17 @@ if (typeof(routeEvent) == 'undefined') {
           replaceAbbrev(payCodeOptions[j]);
         }
 
-        // find the accompanying amount input and auto-set to 8.0 on select change
-        var amountInput = tr.querySelector('td.Amount input');
-        if (amountInput) {
-          payCodeSelect.addEventListener('change', function(evt) {
-            if (amountInput.value === '') {
-              amountInput.value = '8.0';
-            }
-          });
-        }
+        (function(tr, payCodeSelect) {
+          // find the accompanying amount input and auto-set to 8.0 on select change
+          var amountInput = tr.querySelector('td.Amount input');
+          if (amountInput) {
+            payCodeSelect.addEventListener('change', function(evt) {
+              if (amountInput.value === '') {
+                amountInput.value = '8.0';
+              }
+            });
+          }
+        })(tr, payCodeSelect);
       } else {
         // this is probably a previous timecard
         var md = payCodeDiv.innerHTML.match(/^&nbsp;([A-Z]{3})&nbsp;$/);

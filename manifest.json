@@ -3,7 +3,7 @@
 
   "name": "Fix Kronos",
   "description": "This extension fixes Kronos a little.",
-  "version": "1.2",
+  "version": "1.3",
 
   "permissions": [
     "https://kronosprod.mis.vanderbilt.edu/"
