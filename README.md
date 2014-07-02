@@ -3,6 +3,13 @@ fix-kronos-chrome
 
 This is a Google Chrome/Chromium extension to make Kronos a little more usable. Use at your own risk!
 
+Features
+--------
+
+ * Replace cryptic abbreviations with full text descriptions
+ * Automatically redirect from the Java-based version to the non-Java-based version
+ * Automatically fill in 8 hours for the amount of time taken off
+
 Installation
 ------------
 
