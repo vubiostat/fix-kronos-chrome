@@ -54,6 +54,7 @@ if (typeof(routeEvent) == 'undefined') {
             payCodeSelect.addEventListener('change', function(evt) {
               if (amountInput.value === '') {
                 amountInput.value = '8.0';
+                amountInput.onchange()
               }
             });
           }
